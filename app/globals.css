@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* @plugin "tailwindcss-animate"; */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 250 95% 64%; /* #6b4efb */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 250 95% 64%;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: 247 24% 6%; /* #0B0A10 equivalent */
+  --foreground: 0 0% 100%;
+  --card: 250 20% 9%; /* #131219 equivalent */
+  --card-foreground: 0 0% 100%;
+  --popover: 250 20% 9%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 258 100% 83%; /* #C2A8FF lilac */
+  --primary-foreground: 260 40% 10%;
+  --secondary: 240 20% 12%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 20% 12%;
+  --muted-foreground: 240 10% 65%;
+  --accent: 258 100% 83%;
+  --accent-foreground: 260 40% 10%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 15% 15%; /* #211E2A */
+  --input: 240 15% 15%;
+  --ring: 258 100% 83%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
+  }
+}
+
+.glass-panel {
+  @apply bg-white border border-black/5 dark:bg-[#05050A] dark:border-[#6b4efb]/20 backdrop-blur-xl shadow-xl rounded-2xl;
+  transition: all 0.3s ease;
+}
+
+.glass-card {
+  @apply bg-white border border-black/5 dark:bg-[#05050A] dark:border-[#6b4efb]/30 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] dark:shadow-[0_0_20px_0_rgba(107,78,251,0.15)];
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dark * {
+  /* Give text a slight glowing purple hue in dark mode */
+  text-shadow: 0 0 1px rgba(107, 78, 251, 0.1);
+}
+
+.dark input:focus, .dark button:focus {
+  box-shadow: 0 0 15px rgba(107, 78, 251, 0.5) !important;
+  border-color: rgba(107, 78, 251, 0.8) !important;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shine 6s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
