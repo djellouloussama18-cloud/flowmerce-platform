@@ -120,7 +120,6 @@ export default function RegisterPage() {
       email,
       password,
       options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
         data: {
           first_name: firstName,
           last_name: lastName,

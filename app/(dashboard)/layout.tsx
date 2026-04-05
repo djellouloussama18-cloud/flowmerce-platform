@@ -121,13 +121,13 @@ function DashboardLayoutInner({
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 bg-background pb-12">
-        <header className="h-[70px] flex items-center justify-between px-6 md:px-10 sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border/50">
-          <div className="flex items-center gap-4 w-full max-w-xl">
-             <Button variant="ghost" size="icon" className="md:hidden border border-border bg-card" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <header className="h-[70px] flex items-center justify-between px-3 sm:px-6 md:px-10 sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border/50">
+          <div className="flex items-center gap-2 sm:gap-4 w-full max-w-xl">
+             <Button variant="ghost" size="icon" className="flex md:hidden border border-border bg-card shrink-0" onClick={() => setSidebarOpen(!sidebarOpen)}>
               <Menu className="h-5 w-5" />
             </Button>
-            <div className="md:hidden flex items-center flex-1">
-               <img src="/logo.png" alt="Flowmerce Logo" className="h-8 w-auto object-contain" />
+            <div className="flex md:hidden items-center shrink-0">
+               <img src="/logo.png" alt="Flowmerce Logo" className="h-6 sm:h-8 w-auto object-contain" />
             </div>
             <div className="hidden md:flex items-center w-full bg-white dark:bg-card rounded-full px-5 py-3 shadow-sm border border-transparent focus-within:border-primary/20 transition-all">
                <Search className="h-4 w-4 text-muted-foreground rtl:ml-3 ltr:mr-3" />
@@ -135,13 +135,13 @@ function DashboardLayoutInner({
             </div>
           </div>
           
-          <div className="flex items-center gap-4 shrink-0 bg-white dark:bg-card px-4 py-2 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+          <div className="flex items-center gap-1 sm:gap-4 shrink-0 bg-white dark:bg-card px-2 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] ml-2">
             <ModeToggle />
-            <Button variant="ghost" size="sm" className="hidden sm:flex rounded-full text-foreground hover:bg-muted font-bold" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
+            <Button variant="ghost" size="sm" className="flex rounded-full text-foreground hover:bg-muted font-bold px-2 sm:px-3 h-8" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>
               {lang === 'en' ? 'AR' : 'EN'}
             </Button>
-            <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center ml-2 border border-border">
-              <span className="text-xs font-bold text-foreground">JR</span>
+            <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-muted flex items-center justify-center ml-0 sm:ml-2 border border-border shrink-0">
+              <span className="text-[10px] sm:text-xs font-bold text-foreground">JR</span>
             </div>
           </div>
         </header>
@@ -154,25 +154,40 @@ function DashboardLayoutInner({
             <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
             <div className="relative flex-1 flex flex-col max-w-xs w-full bg-background border-r border-white/10 shadow-xl overflow-y-auto">
               {/* ...mobile sidebar content matching desktop... */}
-               <div className="h-16 flex items-center px-6 border-b border-white/10 shrink-0">
-                <span className="font-bold text-lg">Menu</span>
+               <div className="h-[80px] flex items-center px-6 border-b border-white/10 shrink-0">
+                <img src="/logo.png" alt="Flowmerce Logo" className="h-8 w-auto object-contain" />
               </div>
-              <div className="flex-1 py-6 px-4 space-y-2">
+              <div className="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
+                <div className="text-[10px] font-bold text-muted-foreground tracking-widest px-3 mb-2">{t('overview').toUpperCase()}</div>
                 {navItems.map((item) => (
                   <Link key={item.href} href={item.href} onClick={() => setSidebarOpen(false)}>
                     <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors ${
-                      pathname === item.href ? 'bg-primary/20 text-primary font-medium' : 'text-muted-foreground hover:bg-white/5'
+                      pathname === item.href || pathname.startsWith(item.href + '/') ? 'bg-primary/20 text-primary font-medium' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                     }`}>
                       <item.icon className="h-5 w-5" />
                       {item.label}
                     </div>
                   </Link>
                 ))}
+                
+                <div className="text-[10px] font-bold text-muted-foreground tracking-widest mt-8 mb-2 px-3">{t('settings').toUpperCase()}</div>
+                 <Link href="/settings" onClick={() => setSidebarOpen(false)}>
+                  <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors font-medium ${pathname === '/settings' ? 'bg-primary/20 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}>
+                     <Settings className="h-5 w-5" />
+                     {t('settings')}
+                  </div>
+                 </Link>
+                 <Link href="/guide" onClick={() => setSidebarOpen(false)}>
+                  <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors font-medium ${pathname === '/guide' ? 'bg-primary/20 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}>
+                     <BookOpen className="h-5 w-5" />
+                     {t('guide')}
+                  </div>
+                 </Link>
               </div>
-              <div className="p-4 border-t border-white/10 shrink-0">
-                <Button variant="ghost" className="w-full justify-start text-muted-foreground" onClick={handleSignOut}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign out
+              <div className="p-4 border-t border-white/10 shrink-0 mt-auto">
+                <Button variant="ghost" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 px-4 py-3 rounded-2xl font-medium h-auto" onClick={handleSignOut}>
+                  <LogOut className="rtl:ml-3 ltr:mr-3 h-5 w-5" />
+                  {t('logout')}
                 </Button>
               </div>
             </div>
