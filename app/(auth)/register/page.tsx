@@ -89,6 +89,8 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const [otpCode, setOtpCode] = useState('')
+  const [verifying, setVerifying] = useState(false)
   
   const router = useRouter()
   const supabase = createClient()
@@ -138,6 +140,26 @@ export default function RegisterPage() {
     setLoading(false)
   }
 
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setVerifying(true)
+    setError(null)
+
+    const { error } = await supabase.auth.verifyOtp({
+      email,
+      token: otpCode,
+      type: 'signup'
+    })
+
+    if (error) {
+      setError(error.message)
+      setVerifying(false)
+      return
+    }
+
+    router.push('/dashboard')
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background z-0"></div>
@@ -155,15 +177,42 @@ export default function RegisterPage() {
         </CardHeader>
         
         {success ? (
-           <CardContent className="space-y-4 pt-4 text-center">
-             <div className="p-6 bg-green-500/10 border border-green-500/20 rounded-xl">
-                <h3 className="text-xl font-semibold text-green-500 mb-2">Check your email ✉️</h3>
-                <p className="text-muted-foreground text-sm">We&apos;ve sent you a confirmation link to verify your account.</p>
-             </div>
-             <Button variant="outline" className="w-full h-12 text-md rounded-xl" onClick={() => router.push('/login')}>
-                Back to Login
-             </Button>
-           </CardContent>
+           <form onSubmit={handleVerifyOtp}>
+             <CardContent className="space-y-4 pt-4 text-center">
+               <div className="p-6 bg-primary/10 border border-primary/20 rounded-xl mb-4">
+                  <h3 className="text-xl font-semibold mb-2">Check your email ✉️</h3>
+                  <p className="text-muted-foreground text-sm">We&apos;ve sent a 6-digit confirmation code to <span className="font-medium text-foreground">{email}</span>. Please enter it below.</p>
+               </div>
+               
+               {error && (
+                 <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-destructive text-sm text-center mb-4">
+                   {error}
+                 </div>
+               )}
+
+               <div className="space-y-2 text-left">
+                 <Label htmlFor="otp">Confirmation Code</Label>
+                 <Input 
+                   id="otp" 
+                   type="text" 
+                   placeholder="123456"
+                   value={otpCode}
+                   onChange={(e) => setOtpCode(e.target.value.trim())}
+                   required
+                   maxLength={6}
+                   className="bg-background border-border focus-visible:ring-primary h-14 text-center text-2xl tracking-[0.5em] font-mono"
+                 />
+               </div>
+             </CardContent>
+             <CardFooter className="flex flex-col gap-4 mt-2">
+               <Button type="submit" className="w-full h-12 text-md rounded-xl shadow-lg" disabled={verifying || otpCode.length < 6}>
+                 {verifying ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : 'Verify Account'}
+               </Button>
+               <Button type="button" variant="ghost" className="w-full text-muted-foreground" onClick={() => setSuccess(false)}>
+                  Change Email
+               </Button>
+             </CardFooter>
+           </form>
         ) : (
           <form onSubmit={handleRegister}>
             <CardContent className="space-y-4 pt-4">
