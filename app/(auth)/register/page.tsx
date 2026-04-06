@@ -181,7 +181,7 @@ export default function RegisterPage() {
              <CardContent className="space-y-4 pt-4 text-center">
                <div className="p-6 bg-primary/10 border border-primary/20 rounded-xl mb-4">
                   <h3 className="text-xl font-semibold mb-2">Check your email ✉️</h3>
-                  <p className="text-muted-foreground text-sm">We&apos;ve sent a 6-digit confirmation code to <span className="font-medium text-foreground">{email}</span>. Please enter it below.</p>
+                  <p className="text-muted-foreground text-sm">We&apos;ve sent a confirmation code to <span className="font-medium text-foreground">{email}</span>. Please enter it below.</p>
                </div>
                
                {error && (
@@ -195,12 +195,12 @@ export default function RegisterPage() {
                  <Input 
                    id="otp" 
                    type="text" 
-                   placeholder="123456"
+                   placeholder="Enter your code"
                    value={otpCode}
                    onChange={(e) => setOtpCode(e.target.value.trim())}
                    required
-                   maxLength={6}
-                   className="bg-background border-border focus-visible:ring-primary h-14 text-center text-2xl tracking-[0.5em] font-mono"
+                   maxLength={8}
+                   className="bg-background border-border focus-visible:ring-primary h-14 text-center text-2xl tracking-[0.2em] font-mono"
                  />
                </div>
              </CardContent>
