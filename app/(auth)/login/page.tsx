@@ -47,7 +47,7 @@ export default function LoginPage() {
           <div className="flex justify-center mb-6">
             <div className="p-5 bg-muted/30 rounded-2xl border border-border/50">
                {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src="/logo.png" alt="Flowmerce Logo" className="h-14 w-auto object-contain" />
+               <img src="/logo.png" alt="DeliveryPro Logo" className="h-14 w-auto object-contain" />
             </div>
           </div>
           <CardTitle className="text-3xl font-bold">Welcome back</CardTitle>

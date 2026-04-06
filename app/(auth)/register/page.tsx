@@ -169,7 +169,7 @@ export default function RegisterPage() {
           <div className="flex justify-center mb-4">
             <div className="p-4 bg-muted/30 rounded-2xl border border-border/50">
                {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img src="/logo.png" alt="Flowmerce Logo" className="h-12 w-auto object-contain" />
+               <img src="/logo.png" alt="DeliveryPro Logo" className="h-12 w-auto object-contain" />
             </div>
           </div>
           <CardTitle className="text-3xl font-bold">Create Account</CardTitle>

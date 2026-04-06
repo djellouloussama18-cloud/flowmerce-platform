@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Flowmerce Platform',
+  title: 'DeliveryPro Platform',
   description: 'Automate your Shopify delivery operations',
 }
 

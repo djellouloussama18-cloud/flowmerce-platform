@@ -8,7 +8,7 @@ export default function Home() {
       <header className="px-6 lg:px-14 h-20 flex items-center border-b border-border/50 glass-panel mt-4 mx-4 mb-8 bg-background/80 backdrop-blur-md">
         <Link className="flex items-center" href="/">
            {/* eslint-disable-next-line @next/next/no-img-element */}
-           <img src="/logo.png" alt="Flowmerce Logo" className="h-10 w-auto object-contain" />
+           <img src="/logo.png" alt="DeliveryPro Logo" className="h-10 w-auto object-contain" />
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link href="/login">
@@ -64,7 +64,7 @@ export default function Home() {
       </main>
       <footer className="py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-border mt-auto text-center">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Flowmerce Platform. All rights reserved.
+          © {new Date().getFullYear()} DeliveryPro Platform. All rights reserved.
         </p>
       </footer>
     </div>

@@ -78,7 +78,7 @@ function DashboardLayoutInner({
         <div className="h-[80px] flex items-center px-5 shrink-0 border-b border-border/50">
           <Link href="/" className="flex items-center w-full">
              {/* eslint-disable-next-line @next/next/no-img-element */}
-             <img src="/logo.png" alt="Flowmerce Logo" className="h-10 w-auto object-contain hover:scale-105 transition-transform" />
+             <img src="/logo.png" alt="DeliveryPro Logo" className="h-10 w-auto object-contain hover:scale-105 transition-transform" />
           </Link>
         </div>
         <div className="flex-1 overflow-auto py-4 px-4 space-y-1">
@@ -127,7 +127,7 @@ function DashboardLayoutInner({
               <Menu className="h-5 w-5" />
             </Button>
             <div className="flex md:hidden items-center shrink-0">
-               <img src="/logo.png" alt="Flowmerce Logo" className="h-6 sm:h-8 w-auto object-contain" />
+               <img src="/logo.png" alt="DeliveryPro Logo" className="h-6 sm:h-8 w-auto object-contain" />
             </div>
             <div className="hidden md:flex items-center w-full bg-white dark:bg-card rounded-full px-5 py-3 shadow-sm border border-transparent focus-within:border-primary/20 transition-all">
                <Search className="h-4 w-4 text-muted-foreground rtl:ml-3 ltr:mr-3" />
@@ -155,7 +155,7 @@ function DashboardLayoutInner({
             <div className="relative flex-1 flex flex-col max-w-xs w-full bg-background border-r border-white/10 shadow-xl overflow-y-auto">
               {/* ...mobile sidebar content matching desktop... */}
                <div className="h-[80px] flex items-center px-6 border-b border-white/10 shrink-0">
-                <img src="/logo.png" alt="Flowmerce Logo" className="h-8 w-auto object-contain" />
+                <img src="/logo.png" alt="DeliveryPro Logo" className="h-8 w-auto object-contain" />
               </div>
               <div className="flex-1 py-6 px-4 space-y-2 overflow-y-auto">
                 <div className="text-[10px] font-bold text-muted-foreground tracking-widest px-3 mb-2">{t('overview').toUpperCase()}</div>
