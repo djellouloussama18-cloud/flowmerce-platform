@@ -145,10 +145,10 @@ export default function RegisterPage() {
     setVerifying(true)
     setError(null)
 
-    const { error } = await supabase.auth.verifyOtp({
+    const { error, data } = await supabase.auth.verifyOtp({
       email,
       token: otpCode,
-      type: 'signup'
+      type: 'email'
     })
 
     if (error) {
